@@ -20,34 +20,41 @@ class LexToken(object):
 
         # List of token names.   This is always required
         self.tokens = (
+           'EQUAL',
            'NUMBER',
            'PLUS',
            'MINUS',
-#            'TIMES',
+           'TIMES',
            'DIVIDE',
            'L_PAREN',
            'R_PAREN',
            'NAME',
            'SEMI',
            'DOT',
-#            'Q_MARK',
-#            'L_BRACKET',
-#            'R_BRACKET',
+           'Q_MARK',
+           'L_BRACKET',
+           'R_BRACKET',
+           'LBRACES',
+           'RBRACES',
+           'newline',
         )
 
         # Regular expression rules for simple tokens
         self.t_ignore_COMMENT = r'\#.*'
+        self.t_EQUAL = r'='
         self.t_SEMI = r';'
         self.t_PLUS = r'\+'
         self.t_MINUS = r'-'
-#         self.t_TIMES = r'\*'
+        self.t_TIMES = r'\*'
         self.t_DIVIDE = r'/'
         self.t_L_PAREN = r'\('
         self.t_R_PAREN = r'\)'
         self.t_DOT = r'\.'
-#         self.t_Q_MARK = r'\"'
-#         self.t_L_BRACKET = r'\['
-#         self.t_R_BRACKET = r'\]'
+        self.t_Q_MARK = r'\"'
+        self.t_L_BRACKET = r'\['
+        self.t_R_BRACKET = r'\]'
+        self.t_LBRACES = r'\{'
+        self.t_RBRACES = r'\}'
 
         # A string containing ignored characters (spaces and tabs)
         self.t_ignore = ' \t'
