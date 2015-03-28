@@ -2,6 +2,7 @@
 import os
 import sys
 
+
 def main():
     if len(sys.argv) < 2:
         print 'Input a directory.'
@@ -27,12 +28,13 @@ def main():
         print '-' * 12
         print 'Total %s files is duplicated.' % len(duplicate_list)
         input_str = raw_input('Do you want to remove this files: [Y/N]')
-        for idx, dup in enumerate(duplicate_list, start=1):
-            try:
-                os.remove(dup)
-                print '[%s]%s removed.' % (idx, dup)
-            except OSError, e:
-                    print e
+        if input_str.upper() == 'Y':
+            for idx, dup in enumerate(duplicate_list, start=1):
+                try:
+                    os.remove(dup)
+                    print '[%s]%s removed.' % (idx, dup)
+                except OSError, e:
+                        print e
     else:
         print 'No duplicate file.'
 
