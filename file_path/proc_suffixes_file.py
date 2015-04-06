@@ -3,17 +3,23 @@ import os
 import re
 import sys
 
-SUFFIX_PAT = re.compile(r'(?P<FILE>[a-zA-z0-9]+)_\d+\b')
+
+SUFFIX_PAT = re.compile(r'_\d\d?$')
 SUFFIXED_LIST = []
 
 
 def is_suffixed_file(dir_path, file_name):
     base_name, ext_name = os.path.splitext(file_name)
-    match_obj = SUFFIX_PAT.match(base_name)
+
+    pos = base_name.rfind('_')
+    if pos == -1:
+        return False
+
+    match_obj = SUFFIX_PAT.match(base_name[pos:])
     if not match_obj:
         return False
 
-    no_suffixed_file = os.path.join(dir_path, match_obj.group('FILE') + ext_name)
+    no_suffixed_file = os.path.join(dir_path, base_name[:pos] + ext_name)
     if not os.path.exists(no_suffixed_file):
         return False
 
