@@ -15,8 +15,9 @@ def main():
     duplicate_list = []
     for dir_path, dir_list, file_list in os.walk(sys.argv[1]):
         for file_name in file_list:
-            if file_name not in name_list:
-                name_list.append(file_name)
+            lowercase = file_name.lower()
+            if lowercase not in name_list:
+                name_list.append(lowercase)
                 continue
             path = os.path.join(dir_path, file_name)
             duplicate_list.append(path)
